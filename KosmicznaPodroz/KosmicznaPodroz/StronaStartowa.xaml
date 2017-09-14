@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="KosmicznaPodroz.StronaStartowa"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KosmicznaPodroz"
+             mc:Ignorable="d" 
+             d:DesignHeight="470" d:DesignWidth="800">
+    <Grid>
+        <Image Margin="-30,-20,-257,-238.6" Source="Obrazki/Tlo/bg5.jpg" Stretch="Fill"/>
+        <Image Margin="-30,-34,473,213.4" Source="Obrazki/Planety/planet_28.png" Stretch="Fill"/>
+        <Image Margin="294,10,-211,-215.6" Source="Obrazki/Planety/planet_19.png" Stretch="Fill"/>
+
+        <Button Name="przyciskNowaSymulacja" Content="Nowa Symulacja" HorizontalAlignment="Center" Height="50" Margin="226,85,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskNowaSymulacja_Click"/>
+        <Button  Content="Wczytaj Symulacje" HorizontalAlignment="Center" Height="50" Margin="226,155,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0"/>
+        <Button Name="przyciskOProgramie" Content="O Programie" HorizontalAlignment="Center" Height="50" Margin="226,223,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskOProgramie_Click"/>
+        <Button Name="przyciskZamknij" Content="Wyjdź" HorizontalAlignment="Center" Height="50" Margin="226,292,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskZamknij_Click"/>
+    </Grid>
+</UserControl>
