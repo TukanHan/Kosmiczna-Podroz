@@ -7,17 +7,22 @@ using System.Windows.Controls;
 
 namespace KosmicznaPodroz
 {
+    /// <summary>
+    /// Klasa przechowująca dane celu którym oznaczamy planetę na którą chcemy polecieć
+    /// </summary>
     public class Cel
     {
         public Image Obrazek { get; private set; }
         public Planeta OznaczonaPlaneta { get; private set; }
 
         private EventHandler DelegatAktualizuj;
+        private EventHandler DelegatUsun;
 
         public Cel(Image obrazek)
         {
             Obrazek = obrazek;
             DelegatAktualizuj = (s, args) => Aktualizuj();
+            DelegatUsun = (s, args) => Odznacz();
         }
 
         public void Aktualizuj()
@@ -30,13 +35,15 @@ namespace KosmicznaPodroz
         {
             OznaczonaPlaneta = planeta;
             OznaczonaPlaneta.PoruszenieEvent += DelegatAktualizuj;
+            OznaczonaPlaneta.UsowanieEvent += DelegatUsun;
             Obrazek.Visibility = System.Windows.Visibility.Visible;
-            Aktualizuj();          
+            Aktualizuj();
         }
 
         public void Odznacz()
         {
             OznaczonaPlaneta.PoruszenieEvent -= DelegatAktualizuj;
+            OznaczonaPlaneta.UsowanieEvent -= DelegatUsun;
             OznaczonaPlaneta = null;
             Obrazek.Visibility = System.Windows.Visibility.Hidden;
         }

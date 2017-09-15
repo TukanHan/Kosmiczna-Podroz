@@ -9,11 +9,7 @@ namespace KosmicznaPodroz
 {
     public class PolaczenieDwustronne : Polaczenie
     {
-        public PolaczenieDwustronne()
-        {
-            obrazekPolaczenia = MainWindow.mainWindow.stronaSymulacji.StworzObrazekPolaczenia("Obrazki/Inne/TrasaPodwojna.png", this);
-            obrazekPolaczenia.Visibility = System.Windows.Visibility.Hidden;
-        }
+        public PolaczenieDwustronne() { }
 
         public override bool DodajPlanete(Planeta planeta)
         {
@@ -29,7 +25,7 @@ namespace KosmicznaPodroz
             else
             {
                 PlanetaKoncowa = planeta;
-                obrazekPolaczenia.Visibility = System.Windows.Visibility.Visible;
+                Obrazek.Visibility = System.Windows.Visibility.Visible;
 
                 Aktualizuj();
 

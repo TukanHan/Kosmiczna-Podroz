@@ -7,17 +7,20 @@ using System.Windows.Controls;
 
 namespace KosmicznaPodroz
 {
-    public class Planeta : IPrzesowalnyObiekt
+    /// <summary>
+    /// Klasa przechowująca dane o planetach i ich połączeniach
+    /// </summary>
+    public class Planeta : IPrzesowalnyObiekt, IDisposable
     {
         public List<Polaczenie> Polaczenia { get; private set; } = new List<Polaczenie>();
-        public Image Obrazek { get; private set; }
+        public Image Obrazek { get; set; }
 
         public event EventHandler PoruszenieEvent;
         public event EventHandler UsowanieEvent;
 
         public Planeta()
         {
-            Obrazek = MainWindow.mainWindow.stronaSymulacji.StworzObrazekPlanety(this);
+            MainWindow.mainWindow.stronaSymulacji.Planety.Add(this);
         }
 
         public void Aktualizuj()
@@ -32,6 +35,7 @@ namespace KosmicznaPodroz
                 UsowanieEvent(this, EventArgs.Empty);
 
             (Obrazek.Parent as Canvas).Children.Remove(Obrazek);
+            MainWindow.mainWindow.stronaSymulacji.Planety.Remove(this);
         }
     }
 }

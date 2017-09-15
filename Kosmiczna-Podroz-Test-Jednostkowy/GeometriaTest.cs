@@ -35,11 +35,20 @@ namespace Kosmiczna_Podroz_Test_Jednostkowy
 
         [TestCase(0, 0, 1, 0, 90)]
         [TestCase(0, 0, -1, 0, 270)]
-        public void ObliczKatPomiedzy(double obiektA_X, double obiektA_Y, double obiektB_X, double obiektB_Y, double oczekiwany)
+        public void ObliczKatPomiedzyTest(double obiektA_X, double obiektA_Y, double obiektB_X, double obiektB_Y, double oczekiwany)
         {
             var geometria = new Geometria(new Punkt(obiektA_X, obiektA_Y), new Punkt(obiektB_X, obiektB_Y));
 
             Assert.AreEqual(oczekiwany, geometria.ObliczKatPomiedzy());
+        }
+
+        [TestCase(0, 0, 0, 0, 0, 0, 0)]
+        [TestCase(0, 3, 0, 0, 0.5, 0, -0.5)]
+        public void ObliczWektorPrzesunieciaTest(double obiektA_X, double obiektA_Y, double obiektB_X, double obiektB_Y, double przesuniecie, double oczekiwany_X, double oczekiwany_Y)
+        {
+            var geometria = new Geometria(new Punkt(obiektA_X, obiektA_Y), new Punkt(obiektB_X, obiektB_Y));
+
+            Assert.AreEqual(new Punkt(oczekiwany_X, oczekiwany_Y), geometria.ObliczWektorPrzesuniecia(przesuniecie));
         }
     }
 }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace KosmicznaPodroz
 {
     /// <summary>
-    /// Strona z inforacjami o programie
+    /// Interaction logic for StronaInstrukcji.xaml
     /// </summary>
-    public partial class StronaOProgramie : UserControl
+    public partial class StronaInstrukcji : UserControl
     {
-        public StronaOProgramie()
+        public StronaInstrukcji()
         {
             InitializeComponent();
         }
@@ -28,11 +28,6 @@ namespace KosmicznaPodroz
         private void przyciskCofnij_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.mainWindow.OtworzOkno(MainWindow.mainWindow.stronaStartowa, this);
-        }
-
-        private void Hiperlacze(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"http://" + ((Button)sender).Tag);
         }
     }
 }

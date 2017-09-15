@@ -10,9 +10,13 @@ using System.Windows.Media;
 
 namespace KosmicznaPodroz
 {
+
+    /// <summary>
+    /// Klasa zawierająca informacje o pojedyńczej trasie między planetarnej
+    /// </summary>
     public abstract class Polaczenie : IDisposable
     {
-        protected Grid obrazekPolaczenia;
+        public Grid Obrazek { get; set; }
         public Planeta PlanetaStartowa { get; protected set; }
         public Planeta PlanetaKoncowa { get; protected set; }
         public double Waga { get; protected set; }
@@ -35,12 +39,12 @@ namespace KosmicznaPodroz
                     new Punkt(Canvas.GetLeft(PlanetaStartowa.Obrazek), Canvas.GetTop(PlanetaStartowa.Obrazek)),
                     new Punkt(Canvas.GetLeft(PlanetaKoncowa.Obrazek), Canvas.GetTop(PlanetaKoncowa.Obrazek))
                 );
-            Waga = obrazekPolaczenia.Height = obliczanie.ObliczOdlegloscPomiedzy();
+            Waga = Obrazek.Height = obliczanie.ObliczOdlegloscPomiedzy();
 
-            Canvas.SetLeft(obrazekPolaczenia, obliczanie.ObliczPozycjePomiedzy().X + (PlanetaStartowa.Obrazek.Width/2 - obrazekPolaczenia.Width/2) );
-            Canvas.SetTop(obrazekPolaczenia, obliczanie.ObliczPozycjePomiedzy().Y + (PlanetaStartowa.Obrazek.Height / 2 - obrazekPolaczenia.Height / 2));
+            Canvas.SetLeft(Obrazek, obliczanie.ObliczPozycjePomiedzy().X + (PlanetaStartowa.Obrazek.Width/2 - Obrazek.Width/2) );
+            Canvas.SetTop(Obrazek, obliczanie.ObliczPozycjePomiedzy().Y + (PlanetaStartowa.Obrazek.Height / 2 - Obrazek.Height / 2));
 
-            obrazekPolaczenia.RenderTransform = new RotateTransform(obliczanie.ObliczKatPomiedzy());
+            Obrazek.RenderTransform = new RotateTransform(obliczanie.ObliczKatPomiedzy());
         }
 
         public void Dispose()
@@ -58,7 +62,15 @@ namespace KosmicznaPodroz
                 PlanetaKoncowa.Polaczenia.Remove(this);
             }
 
-            (obrazekPolaczenia.Parent as Canvas).Children.Remove(obrazekPolaczenia);
+            (Obrazek.Parent as Canvas).Children.Remove(Obrazek);
+        }
+
+        public Planeta ZwrocPrzeciwnaPlanete(Planeta planeta)
+        {
+            if (planeta == PlanetaStartowa)
+                return PlanetaKoncowa;
+            else
+                return PlanetaStartowa;
         }
 
         protected bool CzyNalerzyUsunac()
@@ -66,29 +78,23 @@ namespace KosmicznaPodroz
             if (PlanetaKoncowa == PlanetaStartowa)
                 return true;
 
-            if (PlanetaStartowa.Polaczenia.Find(polaczenie => polaczenie.Equals(this) && polaczenie != this) != null)
-                return true;
+            foreach(Polaczenie polaczenie in PlanetaStartowa.Polaczenia)
+            {
+                if (polaczenie.PlanetaStartowa == PlanetaStartowa && polaczenie.PlanetaKoncowa == PlanetaKoncowa && polaczenie != this)
+                    return true;
+                else if (polaczenie.PlanetaKoncowa == PlanetaStartowa && polaczenie.PlanetaStartowa == PlanetaKoncowa && polaczenie != this)
+                    return true;
+            }
 
-            else if (PlanetaStartowa.Polaczenia.Find(polaczenie => polaczenie.Equals(this) && polaczenie != this) != null)
-                return true;
+            foreach (Polaczenie polaczenie in PlanetaKoncowa.Polaczenia)
+            {
+                if (polaczenie.PlanetaStartowa == PlanetaStartowa && polaczenie.PlanetaKoncowa == PlanetaKoncowa && polaczenie != this)
+                    return true;
+                else if (polaczenie.PlanetaKoncowa == PlanetaStartowa && polaczenie.PlanetaStartowa == PlanetaKoncowa && polaczenie != this)
+                    return true;
+            }
 
             return false;
-        }
-
-        public override bool Equals(object obj)
-        {
-            Polaczenie drugi = obj as Polaczenie;
-            if (drugi == null)
-                return false;
-            else
-            {
-                if (drugi.PlanetaStartowa == PlanetaStartowa && drugi.PlanetaKoncowa == PlanetaKoncowa)
-                    return true;
-                else if (drugi.PlanetaStartowa == PlanetaKoncowa && drugi.PlanetaKoncowa == PlanetaStartowa)
-                    return true;
-                else
-                    return false;
-            }
         }
     }
 }

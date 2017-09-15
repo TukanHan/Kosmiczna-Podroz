@@ -7,7 +7,10 @@ using System.Windows.Controls;
 
 namespace KosmicznaPodroz
 {
-    interface IPrzesowalnyObiekt : IDisposable
+    /// <summary>
+    /// Interfejs zawierający cechy wspólne dla obiektów przesuwalnych
+    /// </summary>
+    interface IPrzesowalnyObiekt
     {
         Image Obrazek { get; }
         void Aktualizuj();

@@ -18,6 +18,10 @@ namespace KosmicznaPodroz
         }
     }
 
+
+    /// <summary>
+    /// Klasa obliczająca pozycję/ kąty/ odległość
+    /// </summary>
     public class Geometria
     {
         private Punkt obiektA;
@@ -42,6 +46,19 @@ namespace KosmicznaPodroz
         public double ObliczKatPomiedzy()
         {
             return Math.Atan2(obiektB.Y - obiektA.Y, obiektB.X - obiektA.X) * (180 / Math.PI) + 90;           
+        }
+
+        public Punkt ObliczWektorPrzesuniecia(double przesuniecie)
+        {
+            if (przesuniecie == 0)
+                return new Punkt(0, 0);
+
+            double kawalki = ObliczOdlegloscPomiedzy() / przesuniecie;
+
+            if(kawalki == 0)
+                return new Punkt(0, 0);
+
+            return new Punkt((obiektB.X - obiektA.X) / kawalki, (obiektB.Y - obiektA.Y) / kawalki);
         }
     }
 }

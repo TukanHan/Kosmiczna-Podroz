@@ -9,6 +9,7 @@
         Title="Kosmiczna Podróż" Height="500" Width="800">
     <Grid>
         <local:StronaStartowa x:Name="stronaStartowa" />
+        <local:StronaInstrukcji x:Name="stronaPomoc" Visibility="Hidden" />
         <local:StronaOProgramie x:Name="stronaOProgramie" Visibility="Hidden" />
         <local:StronaSymulacji x:Name="stronaSymulacji" Visibility="Hidden" />
     </Grid>

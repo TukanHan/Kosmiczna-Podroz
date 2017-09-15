@@ -8,12 +8,13 @@
              d:DesignHeight="470" d:DesignWidth="800">
     <Grid>
         <Image Margin="-30,-20,-257,-238.6" Source="Obrazki/Tlo/bg5.jpg" Stretch="Fill"/>
-        <Image Margin="-30,-34,473,213.4" Source="Obrazki/Planety/planet_28.png" Stretch="Fill"/>
+        <Image Margin="-30,-34,506,213.4" Source="Obrazki/Planety/planet_27.png" Stretch="Fill"/>
         <Image Margin="294,10,-211,-215.6" Source="Obrazki/Planety/planet_19.png" Stretch="Fill"/>
 
-        <Button Name="przyciskNowaSymulacja" Content="Nowa Symulacja" HorizontalAlignment="Center" Height="50" Margin="226,85,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskNowaSymulacja_Click"/>
-        <Button  Content="Wczytaj Symulacje" HorizontalAlignment="Center" Height="50" Margin="226,155,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0"/>
+        <Button Name="przyciskSymulacja" Content="Symulacja" HorizontalAlignment="Center" Height="50" Margin="226,85,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskNowaSymulacja_Click"/>
+        <Button x:Name="przyciskPomoc" Content="Pomoc" HorizontalAlignment="Center" Height="50" Margin="226,152,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskPomoc_Click"/>
         <Button Name="przyciskOProgramie" Content="O Programie" HorizontalAlignment="Center" Height="50" Margin="226,223,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskOProgramie_Click"/>
         <Button Name="przyciskZamknij" Content="Wyjdź" HorizontalAlignment="Center" Height="50" Margin="226,292,224,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskZamknij_Click"/>
+        
     </Grid>
 </UserControl>

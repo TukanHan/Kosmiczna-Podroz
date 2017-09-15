@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace KosmicznaPodroz
 {
     /// <summary>
-    /// Interaction logic for StronaStartowa.xaml
+    /// Strona startowa
     /// </summary>
     public partial class StronaStartowa : UserControl
     {
@@ -28,6 +28,11 @@ namespace KosmicznaPodroz
         private void przyciskNowaSymulacja_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.mainWindow.OtworzOkno(MainWindow.mainWindow.stronaSymulacji, this);
+        }
+
+        private void przyciskPomoc_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.mainWindow.OtworzOkno(MainWindow.mainWindow.stronaPomoc, this);
         }
 
         private void przyciskOProgramie_Click(object sender, RoutedEventArgs e)

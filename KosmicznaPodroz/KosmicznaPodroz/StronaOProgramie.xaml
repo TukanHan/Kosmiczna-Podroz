@@ -6,12 +6,33 @@
              xmlns:local="clr-namespace:KosmicznaPodroz"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Zasob.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
         <Image Margin="-241,-238,-18,-20.4" Source="Obrazki/Tlo/bg5.jpg" Stretch="Fill"/>
-        <Image Margin="538,10,36,254.6" Source="Obrazki/Planety/planet_24.png" Stretch="Fill"/>
-        <Image Margin="-33,169,462,-51.4" Source="Obrazki/Planety/planet_32.png" Stretch="Fill"/>
+        <Image Margin="538,10,36,254.6" Source="Obrazki/Planety/planet_24.png" Stretch="Fill" Opacity="0.9"/>
+        <Image Margin="-33,169,462,-51.4" Source="Obrazki/Planety/planet_20.png" Stretch="Fill" Opacity="0.8"/>
 
-        <Button Name="przyciskCofnij" Content="Cofnij" HorizontalAlignment="Center" Height="50" Margin="228,320,222,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskCofnij_Click" />
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="257" Margin="72,32,0,0" TextWrapping="Wrap" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at viverra purus. Praesent posuere turpis ac est tempor dapibus. Cras eleifend malesuada nunc. Nulla varius mattis ligula pretium dui." VerticalAlignment="Top" Width="659" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Foreground="White"/>
+        <Button Name="przyciskCofnij" Content="Cofnij" HorizontalAlignment="Center" Height="50" Margin="283,352,267,0" VerticalAlignment="Top" Width="250" FontSize="16" FontFamily="Microsoft JhengHei UI Light" Background="#FFA1D3D0" Click="przyciskCofnij_Click" />
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="55" Margin="72,32,0,0" TextWrapping="Wrap" Text="Program niekomercyjny stworzony w celach edukacyjnych o otwartym kodzie źródłowym autorstwa TukanHana dostępnym pod:" VerticalAlignment="Top" Width="659" FontFamily="Microsoft JhengHei UI Light" FontSize="20" Foreground="White" TextAlignment="Center"/>
+        <Button HorizontalAlignment="Left" Height="40" Margin="265,87,0,0" VerticalAlignment="Top" Width="249" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Hiperlacze" Tag="github.com/TukanHan" Style="{StaticResource MyButtonStyle}">
+            <TextBlock HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" Text="github.com/TukanHan" VerticalAlignment="Top" Width="224" FontFamily="Microsoft YaHei Light" FontSize="20" TextAlignment="Center" Foreground="#FF6073FF" />
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Height="37" Margin="180,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontFamily="Microsoft YaHei Light" FontSize="20" TextAlignment="Center" Foreground="White"><Run Text="Grafika wykorzystana w programie autorstw"/><Run Text=":"/></TextBlock>
+        <StackPanel HorizontalAlignment="Left" Height="175" Margin="180,172,0,0" VerticalAlignment="Top" Width="440">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontFamily="Microsoft YaHei Light" FontSize="18" TextAlignment="Center" Foreground="White" Text="Unnamed"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontFamily="Microsoft YaHei Light" FontSize="18" TextAlignment="Center" Foreground="White" Text="MillionthVector"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontFamily="Microsoft YaHei Light" FontSize="18" TextAlignment="Center" Foreground="White" Text="Cuzco"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontFamily="Microsoft YaHei Light" FontSize="18" TextAlignment="Center" Foreground="White" Text="Hubble ESA"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontFamily="Microsoft YaHei Light" FontSize="18" TextAlignment="Center" Foreground="White" Text="scenna"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

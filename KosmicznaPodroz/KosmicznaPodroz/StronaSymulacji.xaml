@@ -25,17 +25,17 @@
                 <TextBlock Text="Planeta" Foreground="White" FontFamily="Microsoft JhengHei UI Light" TextAlignment="Center" FontSize="18"/>
                 <Button Name="przyciskTworzPlanete" HorizontalAlignment="Center" Height="70"   Width="70" BorderBrush="{x:Null}" Style="{StaticResource MyButtonStyle}" Click="przyciskTworzPlanete_Click">
                     <Button.Background>
-                        <ImageBrush ImageSource="Obrazki/Planety/planet_28.png"/>
+                        <ImageBrush ImageSource="Obrazki/Planety/planet_27.png"/>
                     </Button.Background>
                 </Button>
                 <TextBlock Text="Połączenie Jednokierunkowe" TextWrapping="Wrap" Foreground="White" FontFamily="Microsoft JhengHei UI Light" TextAlignment="Center"/>
-                <Button Name="przyciskTworzPolaczenieJedno" HorizontalAlignment="Center" Height="60" Width="70" BorderBrush="{x:Null}" Style="{StaticResource MyButtonStyle}" Click="przyciskTworzPolaczenieJedno_Click">
+                <Button Name="przyciskTworzPolaczenieJedno" HorizontalAlignment="Center" Height="60" Width="70" BorderBrush="{x:Null}" Style="{StaticResource MyButtonStyle}" Click="przyciskTworzPolaczenieJednokierunkowe_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="Obrazki/Inne/TrasaPojedyncza.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
                 <TextBlock Text="Połączenie Dwukierunkowe" TextWrapping="Wrap" Foreground="White" FontFamily="Microsoft JhengHei UI Light" TextAlignment="Center"/>
-                <Button Name="przyciskTworzPolaczenieWdu" HorizontalAlignment="Center" Height="70" Width="70" BorderBrush="{x:Null}" Style="{StaticResource MyButtonStyle}" Click="przyciskTworzPolaczenieWdu_Click">
+                <Button Name="przyciskTworzPolaczenieWdu" HorizontalAlignment="Center" Height="70" Width="70" BorderBrush="{x:Null}" Style="{StaticResource MyButtonStyle}" Click="przyciskTworzPolaczenieDwukierunkowe_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="Obrazki/Inne/TrasaPodwojna.png" Stretch="Uniform"/>
                     </Button.Background>
@@ -63,6 +63,7 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tryb Połączenia " VerticalAlignment="Top"  FontSize="16" FontFamily="Microsoft JhengHei UI Light" Foreground="White"/>
             <Image HorizontalAlignment="Left" Height="24"  VerticalAlignment="Top" Width="25" Source="Obrazki/Inne/TrasaPojedyncza.png" RenderTransformOrigin="0.496,-0.157"/>
         </StackPanel>
-        <Image x:Name="obrazekCel" Height="120" Width="120" Source="Obrazki/Inne/Cel.png" Visibility="Hidden"/>
+        <Image x:Name="obrazekCel" Height="120" Width="120" Panel.ZIndex="1" Source="Obrazki/Inne/Cel.png" Visibility="Hidden"/>
+        <Button x:Name="przyciskCofnij" Content="Cofnij"  Canvas.Left="37" Canvas.Top="7"  Style="{StaticResource MyButtonStyle}" FontSize="18" FontFamily="Microsoft YaHei Light" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF40A7C0" Click="przyciskCofnij_Click"/>
     </Canvas>
 </UserControl>
