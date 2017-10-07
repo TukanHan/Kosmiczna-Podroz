@@ -21,7 +21,7 @@ namespace KosmicznaPodroz
 
         private TrybPoruszania trybPoruszania= TrybPoruszania.Normalny;   
         private Polaczenie nowePolaczenie = null;       
-        private object zlapanyObiekt = null;
+        private IPrzesowalnyObiekt zlapanyObiekt = null;
         private Cel oznaczonaPlaneta;
 
 
@@ -37,21 +37,21 @@ namespace KosmicznaPodroz
             if(zlapanyObiekt == null && trybPoruszania == TrybPoruszania.Normalny)
             {
                 Mouse.OverrideCursor = Cursors.Hand;
+                Mouse.Capture(obiekt.Obrazek);
                 Point mousePoint = Mouse.GetPosition(Application.Current.MainWindow);
 
                 Canvas.SetZIndex(obiekt.Obrazek, 3);
                 obiekt.Pozycja = new Punkt<double>(mousePoint.X - obiekt.Obrazek.Width / 2, mousePoint.Y - obiekt.Obrazek.Height / 2);
 
-                zlapanyObiekt = obiekt.Obrazek;
+                zlapanyObiekt = obiekt;
             }          
         }
 
         private void PrzesowajObiekt(IPrzesowalnyObiekt obiekt)
         {
-            if (zlapanyObiekt == obiekt.Obrazek && trybPoruszania == TrybPoruszania.Normalny)
+            if (zlapanyObiekt == obiekt && trybPoruszania == TrybPoruszania.Normalny)
             {
-                Point mousePoint = Mouse.GetPosition(Application.Current.MainWindow);
-                Mouse.Capture(obiekt.Obrazek);
+                Point mousePoint = Mouse.GetPosition(Application.Current.MainWindow);              
                 obiekt.Pozycja = new Punkt<double>(mousePoint.X - obiekt.Obrazek.Width / 2, mousePoint.Y - obiekt.Obrazek.Height / 2);
                 obiekt.Aktualizuj();
             }
@@ -65,7 +65,7 @@ namespace KosmicznaPodroz
 
         private void PuscPlanete(Planeta planeta)
         {
-            if (zlapanyObiekt == planeta.Obrazek)
+            if (zlapanyObiekt == planeta)
             {
                 Mouse.Capture(null);
                 Mouse.OverrideCursor = Cursors.Arrow;
@@ -84,7 +84,7 @@ namespace KosmicznaPodroz
 
         private void PuscStatek(Statek statek)
         {
-            if (zlapanyObiekt == statek.Obrazek)
+            if (zlapanyObiekt == statek)
             {
                 Mouse.Capture(null);
                 Mouse.OverrideCursor = Cursors.Arrow;
