@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace KosmicznaPodroz
 {
-    public struct Punkt
+    public struct Punkt<T> where T: new()
     {
-        public double X { get; }
-        public double Y { get; }
+        public T X { get; }
+        public T Y { get; }
 
-        public Punkt(double x, double y)
+        public Punkt(T x, T y)
         {
             X = x;
             Y = y;
         }
+
+        public static Punkt<T> Pusty { get { return new Punkt<T>(default(T), default(T)); } }
     }
 
 
@@ -24,18 +26,18 @@ namespace KosmicznaPodroz
     /// </summary>
     public class Geometria
     {
-        private Punkt obiektA;
-        private Punkt obiektB;
+        private Punkt<double> obiektA;
+        private Punkt<double> obiektB;
 
-        public Geometria(Punkt obiektA, Punkt obiektB)
+        public Geometria(Punkt<double> obiektA, Punkt<double> obiektB)
         {
             this.obiektA = obiektA;
             this.obiektB = obiektB;
         }
 
-        public Punkt ObliczPozycjePomiedzy()
+        public Punkt<double> ObliczPozycjePomiedzy()
         {
-            return new Punkt((obiektA.X + obiektB.X) / 2, (obiektA.Y + obiektB.Y) / 2);
+            return new Punkt<double>((obiektA.X + obiektB.X) / 2, (obiektA.Y + obiektB.Y) / 2);
         }
 
         public double ObliczOdlegloscPomiedzy()
@@ -48,17 +50,14 @@ namespace KosmicznaPodroz
             return Math.Atan2(obiektB.Y - obiektA.Y, obiektB.X - obiektA.X) * (180 / Math.PI) + 90;           
         }
 
-        public Punkt ObliczWektorPrzesuniecia(double przesuniecie)
+        public Punkt<double> ObliczWektorPrzesuniecia(double przesuniecie)
         {
-            if (przesuniecie == 0)
-                return new Punkt(0, 0);
-
             double kawalki = ObliczOdlegloscPomiedzy() / przesuniecie;
 
             if(kawalki == 0)
-                return new Punkt(0, 0);
+                return Punkt<double>.Pusty;
 
-            return new Punkt((obiektB.X - obiektA.X) / kawalki, (obiektB.Y - obiektA.Y) / kawalki);
+            return new Punkt<double>((obiektB.X - obiektA.X) / kawalki, (obiektB.Y - obiektA.Y) / kawalki);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace KosmicznaPodroz
     /// <summary>
     /// Klasa w której wyznaczana jest trasa z punktu A do B
     /// </summary>
-    public class PrzeszukiwaczDrogi
+    public class AlgorytmDijkstry
     {
         /// <summary>
         /// Wewnętrzna klasa pomocnicza
@@ -30,7 +30,7 @@ namespace KosmicznaPodroz
 
         private List<Planeta> infrastruktura;
 
-        public PrzeszukiwaczDrogi(List<Planeta> infrastruktura)
+        public AlgorytmDijkstry(List<Planeta> infrastruktura)
         {
             this.infrastruktura = infrastruktura;
         }

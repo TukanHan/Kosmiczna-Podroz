@@ -34,11 +34,7 @@ namespace KosmicznaPodroz
 
         public void Aktualizuj()
         {
-            Geometria obliczanie = new Geometria
-                (
-                    new Punkt(Canvas.GetLeft(PlanetaStartowa.Obrazek), Canvas.GetTop(PlanetaStartowa.Obrazek)),
-                    new Punkt(Canvas.GetLeft(PlanetaKoncowa.Obrazek), Canvas.GetTop(PlanetaKoncowa.Obrazek))
-                );
+            Geometria obliczanie = new Geometria(PlanetaStartowa.Pozycja, PlanetaKoncowa.Pozycja);
             Waga = Obrazek.Height = obliczanie.ObliczOdlegloscPomiedzy();
 
             Canvas.SetLeft(Obrazek, obliczanie.ObliczPozycjePomiedzy().X + (PlanetaStartowa.Obrazek.Width/2 - Obrazek.Width/2) );

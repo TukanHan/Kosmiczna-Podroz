@@ -62,7 +62,7 @@
     <Compile Include="Polaczenie.cs" />
     <Compile Include="PolaczenieDwustronne.cs" />
     <Compile Include="PolaczenieJednostronne.cs" />
-    <Compile Include="PrzeszukiwaczDrogi.cs" />
+    <Compile Include="AlgorytmDijkstry.cs" />
     <Compile Include="Statek.cs" />
     <Compile Include="StronaInstrukcji.xaml.cs">
       <DependentUpon>StronaInstrukcji.xaml</DependentUpon>

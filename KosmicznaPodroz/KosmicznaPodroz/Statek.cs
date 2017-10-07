@@ -16,6 +16,11 @@ namespace KosmicznaPodroz
     {
         public Planeta PlanetaDokowania { get; private set; }
         public Image Obrazek { get; set; }
+        public Punkt<double> Pozycja
+        {
+            get { return new Punkt<double>(Canvas.GetLeft(Obrazek), Canvas.GetTop(Obrazek)); }
+            set { Canvas.SetLeft(Obrazek, value.X); Canvas.SetTop(Obrazek, value.Y); }
+        }
 
         private EventHandler delegatDoUsunieciaObiektu;
         private EventHandler delegatDoPoruszaniaObiektu;
@@ -40,8 +45,8 @@ namespace KosmicznaPodroz
 
         public void UstawPozycje()
         {
-            Canvas.SetLeft(Obrazek, Canvas.GetLeft(PlanetaDokowania.Obrazek) + PlanetaDokowania.Obrazek.Width / 2 - Obrazek.Width / 2);
-            Canvas.SetTop(Obrazek, Canvas.GetTop(PlanetaDokowania.Obrazek) + PlanetaDokowania.Obrazek.Height / 2 - Obrazek.Height / 2);
+            Pozycja = new Punkt<double>(PlanetaDokowania.Pozycja.X + PlanetaDokowania.Obrazek.Width / 2 - Obrazek.Width / 2,
+                                        PlanetaDokowania.Pozycja.Y + PlanetaDokowania.Obrazek.Height / 2 - Obrazek.Height / 2);
         }
 
         public void UstawPlanete(Planeta planeta)
@@ -69,17 +74,15 @@ namespace KosmicznaPodroz
             if(trasaPlanetarna.Count>0)
             {
                 Geometria geometriaStatekCel = new Geometria(
-                    new Punkt(Canvas.GetLeft(trasaPlanetarna[0].Obrazek) + trasaPlanetarna[0].Obrazek.Width/2, Canvas.GetTop(trasaPlanetarna[0].Obrazek )+ trasaPlanetarna[0].Obrazek.Height / 2),
-                    new Punkt(Canvas.GetLeft(Obrazek) + Obrazek.Width/2, Canvas.GetTop(Obrazek) + Obrazek.Height /2));
+                    new Punkt<double>(trasaPlanetarna[0].Pozycja.X + trasaPlanetarna[0].Obrazek.Width/2, trasaPlanetarna[0].Pozycja.Y + trasaPlanetarna[0].Obrazek.Height / 2),
+                    new Punkt<double>(Pozycja.X + Obrazek.Width/2, Pozycja.Y + Obrazek.Height /2));
 
                 if(geometriaStatekCel.ObliczOdlegloscPomiedzy() >= 15)
                 {
-                    Geometria geometriaStartCel = new Geometria(
-                        new Punkt(Canvas.GetLeft(PlanetaDokowania.Obrazek), Canvas.GetTop(PlanetaDokowania.Obrazek)),
-                        new Punkt(Canvas.GetLeft(trasaPlanetarna[0].Obrazek), Canvas.GetTop(trasaPlanetarna[0].Obrazek)));
+                    Geometria geometriaStartCel = new Geometria( PlanetaDokowania.Pozycja, trasaPlanetarna[0].Pozycja);
 
-                    Canvas.SetLeft(Obrazek, Canvas.GetLeft(Obrazek) + geometriaStartCel.ObliczWektorPrzesuniecia(3).X);
-                    Canvas.SetTop(Obrazek, Canvas.GetTop(Obrazek) + geometriaStartCel.ObliczWektorPrzesuniecia(3).Y);
+                    Pozycja = new Punkt<double>(Pozycja.X + geometriaStartCel.ObliczWektorPrzesuniecia(3).X,
+                                                Pozycja.Y + geometriaStartCel.ObliczWektorPrzesuniecia(3).Y);
 
                     Obrazek.RenderTransform = new RotateTransform(geometriaStartCel.ObliczKatPomiedzy());
                 }

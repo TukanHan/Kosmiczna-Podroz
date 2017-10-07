@@ -13,6 +13,7 @@ namespace KosmicznaPodroz
     interface IPrzesowalnyObiekt
     {
         Image Obrazek { get; }
+        Punkt<double> Pozycja { get; set; }
         void Aktualizuj();
     }
 }

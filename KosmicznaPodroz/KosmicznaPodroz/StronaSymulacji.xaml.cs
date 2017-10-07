@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KosmicznaPodroz
 {
@@ -47,8 +40,7 @@ namespace KosmicznaPodroz
                 Point mousePoint = Mouse.GetPosition(Application.Current.MainWindow);
 
                 Canvas.SetZIndex(obiekt.Obrazek, 3);
-                Canvas.SetTop(obiekt.Obrazek, mousePoint.Y - obiekt.Obrazek.Height / 2);
-                Canvas.SetLeft(obiekt.Obrazek, mousePoint.X - obiekt.Obrazek.Width / 2);
+                obiekt.Pozycja = new Punkt<double>(mousePoint.X - obiekt.Obrazek.Width / 2, mousePoint.Y - obiekt.Obrazek.Height / 2);
 
                 zlapanyObiekt = obiekt.Obrazek;
             }          
@@ -60,8 +52,7 @@ namespace KosmicznaPodroz
             {
                 Point mousePoint = Mouse.GetPosition(Application.Current.MainWindow);
                 Mouse.Capture(obiekt.Obrazek);
-                Canvas.SetTop(obiekt.Obrazek, mousePoint.Y - obiekt.Obrazek.Height / 2);
-                Canvas.SetLeft(obiekt.Obrazek, mousePoint.X - obiekt.Obrazek.Width / 2);
+                obiekt.Pozycja = new Punkt<double>(mousePoint.X - obiekt.Obrazek.Width / 2, mousePoint.Y - obiekt.Obrazek.Height / 2);
                 obiekt.Aktualizuj();
             }
         }
@@ -69,9 +60,7 @@ namespace KosmicznaPodroz
         private void UsunObiektNaKlikniecie(IDisposable obiekt)
         {
             if (trybPoruszania == TrybPoruszania.Usowanie)
-            {
                 obiekt.Dispose();
-            }
         }
 
         private void PuscPlanete(Planeta planeta)
@@ -89,9 +78,7 @@ namespace KosmicznaPodroz
                 double x = mousePoint.X;
 
                 if (x >= 670 || y >= 470 || y <= 0 || x <= 0)
-                {
                     planeta.Dispose();
-                }
             }
         }
 
@@ -122,8 +109,8 @@ namespace KosmicznaPodroz
                     {
                         Geometria geometria = new Geometria
                             (
-                                new Punkt(Canvas.GetLeft(statek.Obrazek) + statek.Obrazek.Width /2, Canvas.GetTop(statek.Obrazek) + statek.Obrazek.Height / 2),
-                                new Punkt(Canvas.GetLeft(planeta.Obrazek) + planeta.Obrazek.Width / 2, Canvas.GetTop(planeta.Obrazek) + planeta.Obrazek.Height / 2)
+                                new Punkt<double>(statek.Pozycja.X + statek.Obrazek.Width /2, statek.Pozycja.Y + statek.Obrazek.Height / 2),
+                                new Punkt<double>(planeta.Pozycja.X + planeta.Obrazek.Width / 2, planeta.Pozycja.Y + planeta.Obrazek.Height / 2)
                             );
 
                         if (geometria.ObliczOdlegloscPomiedzy()<dystans && geometria.ObliczOdlegloscPomiedzy()<40)
@@ -155,7 +142,7 @@ namespace KosmicznaPodroz
             if(oznaczonaPlaneta.OznaczonaPlaneta == planeta && trybPoruszania == TrybPoruszania.Normalny)
             {
                 ZmienTryb(TrybPoruszania.Obliczenia);
-                PrzeszukiwaczDrogi przeszukiwacz = new PrzeszukiwaczDrogi(Planety);
+                AlgorytmDijkstry przeszukiwacz = new AlgorytmDijkstry(Planety);
                 Statek.UstawKurs(przeszukiwacz.ZwrocScierzke(Statek.PlanetaDokowania, planeta));
             }
         }        

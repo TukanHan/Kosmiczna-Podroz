@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace KosmicznaPodroz
@@ -14,6 +11,11 @@ namespace KosmicznaPodroz
     {
         public List<Polaczenie> Polaczenia { get; private set; } = new List<Polaczenie>();
         public Image Obrazek { get; set; }
+        public Punkt<double> Pozycja
+        {
+            get { return new Punkt<double>(Canvas.GetLeft(Obrazek), Canvas.GetTop(Obrazek)); }
+            set { Canvas.SetLeft(Obrazek, value.X); Canvas.SetTop(Obrazek, value.Y); }
+        }
 
         public event EventHandler PoruszenieEvent;
         public event EventHandler UsowanieEvent;

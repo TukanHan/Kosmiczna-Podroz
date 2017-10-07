@@ -27,8 +27,8 @@ namespace KosmicznaPodroz
 
         public void Aktualizuj()
         {
-            Canvas.SetLeft(Obrazek, Canvas.GetLeft(OznaczonaPlaneta.Obrazek) + OznaczonaPlaneta.Obrazek.Width / 2 - Obrazek.Width / 2);
-            Canvas.SetTop(Obrazek, Canvas.GetTop(OznaczonaPlaneta.Obrazek) + OznaczonaPlaneta.Obrazek.Height / 2 - Obrazek.Height / 2);
+            Canvas.SetLeft(Obrazek, OznaczonaPlaneta.Pozycja.X + OznaczonaPlaneta.Obrazek.Width / 2 - Obrazek.Width / 2);
+            Canvas.SetTop(Obrazek, OznaczonaPlaneta.Pozycja.Y + OznaczonaPlaneta.Obrazek.Height / 2 - Obrazek.Height / 2);
         }
 
         public void Zaznacz(Planeta planeta)
